@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', async function() {
     logger.debug("Thoses classes can be used :", await loadClassManager.getClassList());
 
     logger.debug("Get needed classes");
