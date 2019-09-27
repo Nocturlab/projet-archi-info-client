@@ -117,7 +117,7 @@ class Main{
         if(login) this.listeners.onLoggedIn();
         else this.show_login();
     }
-};
+}
 
 const __fetch = fetch;
 fetch
