@@ -1,0 +1,30 @@
+name: Build Unix
+on: [push]
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        node-version: [8.x, 10.x, 12.x]
+    steps:
+    - name: Checkout code from Git repository
+      uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: release-${{ matrix.os }}
+        path: ./
+    - name: Build
+      run: |
+        npm install
+        npm run build --if-present
+      env:
+        CI: true
+    - name: Tests
+      run: npm test
