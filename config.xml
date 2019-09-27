@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="fr.nocturlab.projet-data" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>TP Projet Data</name>
+<widget id="fr.nocturlab.ProjetData" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Projet Data</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Apache Cordova application for Projet Data
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
@@ -29,5 +29,6 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="phonegap-plugin-barcodescanner" spec="6.0.0" />
     <engine name="ios" spec="^4.4.0" />
-    <engine name="android" spec="7.1.4" />
+    <engine name="android" spec="^7.1.4" />
+    <engine name="browser" spec="^5.0.4" />
 </widget>

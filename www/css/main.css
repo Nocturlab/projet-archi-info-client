@@ -1,8 +1,8 @@
-.game {font-family: Arial, Helvetica, sans-serif;}
+.main {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-.game input[type=text],
-.game input[type=password] {
+.main input[type=text],
+.main input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -12,7 +12,7 @@
 }
 
 /* Set a style for all buttons */
-.game button {
+.main button {
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
@@ -22,40 +22,40 @@
   width: 100%;
 }
 
-.game button:hover {
+.main button:hover {
   opacity: 0.8;
 }
 
 /* Extra styles for the cancel button */
-.game button.cancel {
+.main button.cancel {
   width: auto;
   padding: 10px 18px;
   background-color: #f44336;
 }
 
 /* Center the image and position the close button */
-.game .imgcontainer {
+.main .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
   position: relative;
 }
 
-.game img.avatar {
+.main img.avatar {
   width: 40%;
   border-radius: 50%;
 }
 
-.game .container {
+.main .container {
   padding: 16px;
 }
 
-.game span.psw {
+.main span.psw {
   float: right;
   padding-top: 16px;
 }
 
 /* The Modal (background) */
-.game .modal {
+.main .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -70,7 +70,7 @@
 }
 
 /* Modal Content/Box */
-.game .modal-content {
+.main .modal-content {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
@@ -78,7 +78,7 @@
 }
 
 /* The Close Button (x) */
-.game .close {
+.main .close {
   position: absolute;
   right: 25px;
   top: 0;
@@ -87,14 +87,14 @@
   font-weight: bold;
 }
 
-.game .close:hover,
-.game .close:focus {
+.main .close:hover,
+.main .close:focus {
   color: red;
   cursor: pointer;
 }
 
 /* Add Zoom Animation */
-.game .animate {
+.main .animate {
   -webkit-animation: animatezoom 0.6s;
   animation: animatezoom 0.6s
 }
@@ -111,11 +111,11 @@
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
-    .game span.psw {
+    .main span.psw {
      display: block;
      float: none;
   }
-  .game button.cancel {
+  .main button.cancel {
      width: 100%;
   }
 }
