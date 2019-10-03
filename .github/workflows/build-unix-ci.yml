@@ -2,7 +2,7 @@ name: Build Unix
 on: [push]
 jobs:
   build:
-    name: Build ${{ matrix.os }}
+    name: Build ${{ matrix.os }} NodeJS ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
