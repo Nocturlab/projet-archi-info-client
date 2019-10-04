@@ -1,26 +1,122 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" type="text/css" href="css/buttons.css" />
-        <title>Easy Parking LR</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Projet Data</h1>
-            <p class="subtext">Projet Data</p>
-            <p></p>
-            <a href="main.html" class="button button-action button-rounded">Commencer</a>
-            <a href="horodateur.html" class="button button-action button-rounded">Horodateur</a>
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Easy Parking LR</title>
+</head>
+
+<body>
+    <div>
+        <h1>Projet Data</h1>
+        <p class="subtext">Projet Data</p>
+        <p></p>
+        <a href="main.html" class="button button-action button-rounded">Commencer</a>
+        <a href="horodateur.html" class="button button-action button-rounded">Horodateur</a>
+    </div>
+
+
+    <div class="mdc-tab-bar navigation-bar" role="tablist">
+        <div class="mdc-tab-scroller">
+            <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll"
+                style="margin-bottom: -12px;">
+                <div class="mdc-tab-scroller__scroll-content">
+                    <!---->
+                    <button role="tab" id="horodateur" class="mdc-tab mdc-tab--stacked" aria-selected="false"
+                        tabindex="0" id="goog_269633689-FIXED-0">
+                        <span class="mdc-tab__content">
+
+                            <i aria-hidden="true" class="material-icons mdc-tab__icon">
+                                <!---->watch_later
+                                <!----></i>
+
+                            <span class="mdc-tab__text-label">
+                                <!---->horodateur
+                                <!----></span>
+
+                        </span>
+
+                        <span class="mdc-tab-indicator">
+                            <span class="mdc-tab-indicator__content
+                        mdc-tab-indicator__content--underline"></span>
+                        </span>
+
+                        <span class="mdc-tab__ripple mdc-ripple-upgraded"
+                            style="--mdc-ripple-fg-size:91px; --mdc-ripple-fg-scale:1.9597913299269296; --mdc-ripple-fg-translate-start:-18.5px, -11.5px; --mdc-ripple-fg-translate-end:30.583335876464844px, -9.5px;"></span>
+                    </button>
+                    <!---->
+                    <button role="tab" class="mdc-tab mdc-tab--active mdc-tab--stacked" aria-selected="true" tabindex="-1"
+                        id="goog_269633689-FIXED-1">
+                        <span class="mdc-tab__content">
+
+                            <i aria-hidden="true" class="material-icons mdc-tab__icon">
+                                <!---->near_me
+                                <!----></i>
+
+                            <span class="mdc-tab__text-label">
+                                <!---->Acceuil
+                                <!----></span>
+
+                        </span>
+
+                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                            <span class="mdc-tab-indicator__content
+                  mdc-tab-indicator__content--underline"></span>
+                        </span>
+
+                        <span class="mdc-tab__ripple mdc-ripple-upgraded"
+                            style="--mdc-ripple-fg-size:93px; --mdc-ripple-fg-scale:1.9468555610133649; --mdc-ripple-fg-translate-start:24.333328247070312px, -7.5px; --mdc-ripple-fg-translate-end:31.083328247070312px, -10.5px;"></span>
+                    </button>
+                    <!---->
+                    <button role="tab" class="mdc-tab mdc-tab--stacked" aria-selected="false" tabindex="-1"
+                        id="goog_269633689-FIXED-2">
+                        <span class="mdc-tab__content">
+
+                            <i aria-hidden="true" class="material-icons mdc-tab__icon">
+                                <!---->favorite
+                                <!----></i>
+
+                            <span class="mdc-tab__text-label">
+                                <!---->Tab Three
+                                <!----></span>
+
+                        </span>
+
+                        <span class="mdc-tab-indicator">
+                            <span class="mdc-tab-indicator__content
+                  mdc-tab-indicator__content--underline"></span>
+                        </span>
+
+                        <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                    </button>
+                    <!---->
+                </div>
+            </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
+    </div>
 
-        <!-- Font Awesome import -->
-        <script src="https://kit.fontawesome.com/170e7aef50.js" crossorigin="anonymous"></script>
 
-        <!-- Google Material Theme import -->
-        <link href="css/material-theme.css" rel="stylesheet">
-        <script src="js/material-theme.js"></script>
-    </body>
+    <script type="text/javascript" src="cordova.js"></script>
+    
+
+    <!-- Font Awesome import -->
+    <script src="https://kit.fontawesome.com/170e7aef50.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- Google Material Theme import -->
+    <link href="css/material-theme.css" rel="stylesheet">
+
+    <script src="js/material-theme.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/navigation.js"></script>
+
+    <script type="text/javascript">
+        window.mdc.autoInit();
+    </script>
+</body>
+
 </html>
