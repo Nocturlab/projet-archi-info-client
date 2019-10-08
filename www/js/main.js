@@ -8,7 +8,7 @@ class Main{
     /**
      * Initiate the main in an HTMLElement
      * 
-     * @param {HTMLElement} html_element 
+     * @param {HTMLElement} html_element
      */
     constructor(remote_url, html_element){
         // scope local this into that
