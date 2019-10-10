@@ -19,13 +19,16 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 
 //Display parkings meters
 //Retrieving data from server API
+let pms;
 _http.open("GET", __REMOTE_URL+'horodateurs/findAll');
 _http.send();
 _http.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
-        let data = JSON.parse(_http.responseText)
         //Handle data 
+        // let data = JSON.parse(_http.responseText)
+
     } else{
+        //Handle error
         console.log(_http.responseText);
     }
 }
@@ -35,14 +38,20 @@ _http.onreadystatechange = function(){
  * Parking meter are define by a point and some relative data (cost, id, adress, ...) 
  * Those data are not currently defined 
  **/
-let pms = Array(
-    {long: 46.16056, latt:-1.148586, cost: 10},
-    {long: 46.15836, latt:-1.145775, cost: 5},
-    {long: 46.14828, latt:-1.153564, cost: 4}
-)
+let pmsJson = { "data": [
+    {"hor_id": 1, "hor_numero": 1, "hor_voie_libelle": "rue A", "hor_type": "A", "hor_alimentation": "solaire", "hor_zone": "bleue", "hor_x": 46.16056, "hor_y": -1.148586},
+    {"hor_id": 2, "hor_numero": 2, "hor_voie_libelle": "rue B", "hor_type": "S", "hor_alimentation": "mécanique", "hor_zone": "rouge", "hor_x": 46.15836, "hor_y": -1.145775},
+    {"hor_id": 3, "hor_numero": 3, "hor_voie_libelle": "rue C", "hor_type": "E", "hor_alimentation": "nucléaire", "hor_zone": "arc-en-ciel", "hor_x": 46.14828, "hor_y": -1.153564},
+]};
+pms = pmsJson.data;
 
 //Display a marker for each parking meter
 pms.forEach(pm => {
-    L.marker([pm.long, pm.latt]).addTo(mymap)
-		.bindPopup("<b>Prix: "+pm.cost+" €/h</b>");
+    let popup = "<b>Numéro: "+pm.hor_numero+"</b></br>"+
+    "<b>Voie: "+pm.hor_voie_libelle+"</b></br>"+
+    "<b>Type: "+pm.hor_type+"</b></br>"+
+    "<b>Alimentation: "+pm.hor_alimentation+"</b></br>"+
+    "<b>Zone: "+pm.hor_zone+"</b></br>";
+
+    L.marker([pm.hor_x, pm.hor_y]).addTo(mymap).bindPopup(popup);
 });
