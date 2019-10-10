@@ -1,6 +1,8 @@
 const __LONG_LR = 46.1591126;
 const __LATT_LR = -1.1520434;
 const __ZOOM_INIT = 13;
+const __REMOTE_URL = new URL('http://easy-park.nocturlab.fr');
+const _http = new XMLHttpRequest();
 
 
 //Create the map
@@ -16,10 +18,23 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 }).addTo(mymap);
 
 //Display parkings meters
+//Retrieving data from server API
+_http.open("GET", __REMOTE_URL+'horodateurs/findAll');
+_http.send();
+_http.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+        let data = JSON.parse(_http.responseText)
+        //Handle data 
+    } else{
+        console.log(_http.responseText);
+    }
+}
+
 /**
  * Dump data
  * Parking meter are define by a point and some relative data (cost, id, adress, ...) 
- * Those data are not currently defined **/
+ * Those data are not currently defined 
+ **/
 let pms = Array(
     {long: 46.16056, latt:-1.148586, cost: 10},
     {long: 46.15836, latt:-1.145775, cost: 5},
