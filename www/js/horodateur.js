@@ -1,7 +1,7 @@
 const __LONG_LR = 46.1591126;
 const __LATT_LR = -1.1520434;
 const __ZOOM_INIT = 13;
-const __REMOTE_URL = new URL('http://easy-park.nocturlab.fr');
+const __REMOTE_URL = new URL('http://beta.easy-park.nocturlab.fr');
 const _http = new XMLHttpRequest();
 
 
