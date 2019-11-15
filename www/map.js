@@ -4,6 +4,8 @@
 //https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/
 
 //us7
+
+let currentPosition;
 function httpGet(theUrl)
 {
     let xmlHttp = new XMLHttpRequest();
@@ -58,16 +60,6 @@ function coordinatesConverter(jsonData) {
 //let coordinates = coordinatesConverter(jsonData);
 
 
-/*
-for (let i = 0; i < coordinates.length; i++) {
-  // TODO afficher nombre de places restantes et le libelle 
-  // TODO le user selectionne un point et affichage de l'itinéraire https://www.liedman.net/leaflet-routing-machine/tutorials/basic-usage/
-    L.marker([coordinates[i][1], coordinates[i][0]]).addTo(map)
-    .bindPopup('Parking.<br>')
-    .openPopup();
-    
-    
-}*/
 
 // afficher sur la map
 
@@ -82,7 +74,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 map.on('locationfound', onLocationFound);
 function onLocationFound(e) {
-
+    currentPosition = [e.latlng.lat,e.latlng.lng]
     let jsonData = {
         "data": [
             {
@@ -93,29 +85,70 @@ function onLocationFound(e) {
     }
     
     let coordinates = coordinatesConverter(jsonData);
-console.log(coordinates[0]);
-    fetch("http://beta.easy-park.nocturlab.fr/parkings/findNearestParking?lat="+coordinates[0][0]+"&lng="+coordinates[0][1]+"&dist=20000").then(function(result) {
+    //change distance 20000
+    fetch("http://beta.easy-park.nocturlab.fr/parkings/findNearestParking?lat="+coordinates[0][0]+"&lng="+coordinates[0][1]+"&dist=2000000").then(function(result) {
         return result.json();
     }).then(function(result) {
-        console.log(result);
+        displayParkings(result);
     }).catch(function(err) {
         console.error(err);
     });
 
 }
 
-//todo affichage des parkings + au click lunch navigator
+//todo affichage des parkings 
+function displayParkings(coordinates) {
+    
+    let wgs84Coordinate = [];
+    let firstProjection = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+    let secondProjection = "+proj=longlat +datum=WGS84 +no_defs";
+
+    
+for (let i = 0; i < coordinates.length; i++) {
+
+    let jsonData = {
+        "data": [
+            {
+                "dp_y": coordinates[i].parking_y,
+                "dp_x": coordinates[i].parking_x
+                
+            }]
+    }
+
+    for (j = 0; j < jsonData.data.length; j++) {
+        wgs84Coordinate.push(proj4(firstProjection,secondProjection, [jsonData.data[j].dp_x, jsonData.data[j].dp_y]));
+    }
+   
+
+}
+
+for (let j = 0; j < wgs84Coordinate.length; j++) {
+    L.marker([wgs84Coordinate[j][1], wgs84Coordinate[j][0]]).addTo(map).on('click', onClick);
+    
+    
+}
+ 
+}
+
+function onClick(e) {
+    console.log(currentPosition);
+    window.addEventListener('ready', function () {
+        launchnavigator.navigate([e.latlng.lat, e.latlng.lng], {
+            start: currentPosition
+        });
+        
+        })
+        
+    alert(e.latlng);
+
+}
+//+ au click lunch navigator
 
 //link itineraire vers ce lieu pour lancer le routing entre current position et parking
 //https://github.com/dpa99c/phonegap-launch-navigator
 //installer le plugin GOOGLE_API_KEY_FOR_ANDROID
 //Tester sur mobile le launchnavigator
-window.addEventListener('ready', function () {
-launchnavigator.navigate([50.279306, -5.163158], {
-    start: "50.342847, -4.749904"
-});
 
-})
 
 
 
