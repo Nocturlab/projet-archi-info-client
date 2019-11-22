@@ -9,6 +9,7 @@ let overlayMaps = {
 };
 
 L.control.layers(null, overlayMaps).addTo(mymap);
+
 function test(){
     if(mymap.getZoom()> 15){
         layerGroupHorodateur.addTo(mymap);
