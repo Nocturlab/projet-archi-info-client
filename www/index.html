@@ -1,29 +1,28 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv=“Content-Security-Policy” content=“default-src ‘self’ gap://ready file://* *; style-src ‘self’ ‘unsafe-inline’; script-src ‘self’ ‘unsafe-inline’ ‘unsafe-eval’”/>
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" type="text/css" href="css/buttons.css" />
-        <title>Easy Parking LR</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Projet Data</h1>
-            <p class="subtext">Projet Data</p>
-            <p></p>
-            <a href="main.html" class="button button-action button-rounded">Commencer</a>
-            <a href="horodateur.html" class="button button-action button-rounded">Horodateur</a>
-            <a href="page.html" class="button button-action button-rounded">parking</a>
+  <title>TP Projet Data</title>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/index.css" />
+      <link rel="stylesheet" type="text/css" href="css/horodateur.css" />
+      <link rel="stylesheet" type="text/css" href="css/buttons.css" />
 
-        <!-- Font Awesome import -->
-        <script src="https://kit.fontawesome.com/170e7aef50.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" type="text/css" href="css/main.css" />
 
-        <!-- Google Material Theme import -->
-        <link href="css/material-theme.css" rel="stylesheet">
-        <script src="js/material-theme.js"></script>
-    </body>
+      <!--LeafLet requierement-->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+  </head>
+
+  <body>
+    <!--Map container-->
+    <div id="mapid"></div>
+
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/layers.js"></script>
+    <script type="text/javascript" src="js/horodateur.js"></script>
+  </body>
 </html>
