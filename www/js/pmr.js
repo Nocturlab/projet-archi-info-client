@@ -3,7 +3,7 @@ const _http = new XMLHttpRequest();
 
 //Display disabled parking spaces
 //Retrieving data from server API
-_http.open("GET", __REMOTE_URL + '');
+_http.open("GET", __REMOTE_URL + '/PlaceMR/findAll');
 _http.send();
 _http.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
@@ -19,7 +19,7 @@ function addHorodateurToMap(data) {
     //Display a marker for each disabled parking space
     data.forEach(dps => {
         //Convert lambert 93 to real coordinate system
-        var coordinates = lambert93toWGPS(dps.hor_x, dps.hor_y)
+        var coordinates = lambert93toWGPS(dps.pr_x, dps.pr_y)
         /*
         let popup = "<b>Numéro: " + dps.hor_numero + "</b></br>" +
             "<b>Zone: " + dps.hor_zone + "</b></br>";
