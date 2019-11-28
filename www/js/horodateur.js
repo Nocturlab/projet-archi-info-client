@@ -15,11 +15,13 @@ _http.onreadystatechange = function () {
         console.log(this.readyState);
     }
 };
-
+/*
 var iconHorodateur = L.icon({
     iconUrl: 'img/horodateur.png',
     iconSize:     [20, 30],
 });
+*/
+var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 })
 
 function addHorodateurToMap(data) {
     //Display a marker for each parking meter
@@ -31,8 +33,10 @@ function addHorodateurToMap(data) {
             "<b>Type: " + pm.hor_type + "</b></br>" +
             "<b>Alimentation: " + pm.hor_alimentation + "</b></br>" +
             "<b>Zone: " + pm.hor_zone + "</b></br>";
-
-        L.marker([coordinates.latitude, coordinates.longitude], {icon: iconHorodateur}).addTo(layerGroupHorodateur).bindPopup(popup);
+        //, {icon: iconHorodateur}
+        marker = L.marker([coordinates.latitude, coordinates.longitude]).bindPopup(popup);
+        markers.addLayer(marker)
+        layerGroupHorodateur.addLayer(markers)
     });
 }
 

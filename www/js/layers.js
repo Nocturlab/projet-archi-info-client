@@ -9,12 +9,12 @@ let overlayMaps = {
 };
 
 L.control.layers(null, overlayMaps).addTo(mymap);
-
-function test(){
-    if(mymap.getZoom()> 15){
+/*
+function displayHorodateurOnZoom(){
+    if(mymap.getZoom()> 13){
         layerGroupHorodateur.addTo(mymap);
     } else {
         mymap.removeLayer(layerGroupHorodateur)
     }
 }
-mymap.on("zoomend", test);
+mymap.on("zoomend", displayHorodateurOnZoom);*/
