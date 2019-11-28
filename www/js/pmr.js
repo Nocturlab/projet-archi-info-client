@@ -9,7 +9,7 @@ _http.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
         //Handle data
         let data = JSON.parse(_http.responseText)
-        addHorodateurToMap(data);
+        addPMRToMap(data);
     } else {
         //Handle error
         console.log(this.readyState);
@@ -17,7 +17,7 @@ _http.onreadystatechange = function () {
 };
 
 
-function addHorodateurToMap(data) {
+function addPMRToMap(data) {
     //Display a marker for each disabled parking space
     data.forEach(dps => {
         //Convert lambert 93 to real coordinate system
