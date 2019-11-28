@@ -22,6 +22,6 @@ function addPMRToMap(data) {
     data.forEach(dps => {
         //Convert lambert 93 to real coordinate system
         var coordinates = lambert93toWGPS(dps.pr_x, dps.pr_y)
-        L.marker([coordinates.latitude, coordinates.longitude]).addTo(layerGroupPMR).bindPopup(popup);
+        L.marker([coordinates.latitude, coordinates.longitude]).addTo(layerGroupMobiliteReduite).bindPopup(popup);
     });
 }
