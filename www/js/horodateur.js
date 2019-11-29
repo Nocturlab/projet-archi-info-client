@@ -1,14 +1,13 @@
-const __REMOTE_URL = new URL('http://beta.easy-park.nocturlab.fr');
-const _http = new XMLHttpRequest();
-
 //Display parkings meters
 //Retrieving data from server API
-_http.open("GET", __REMOTE_URL + '/horodateurs/findAll');
-_http.send();
-_http.onreadystatechange = function () {
+
+let httpHorodateur = new XMLHttpRequest();
+httpHorodateur.open("GET", __REMOTE_URL + '/horodateurs/findAll');
+httpHorodateur.send();
+httpHorodateur.onreadystatechange = function(){
     if (this.readyState === 4 && this.status === 200) {
         //Handle data
-        let data = JSON.parse(_http.responseText);
+        let data = JSON.parse(httpHorodateur.responseText)
         addHorodateurToMap(data);
     } else {
         //Handle error
@@ -16,10 +15,7 @@ _http.onreadystatechange = function () {
     }
 };
 
-var iconHorodateur = L.icon({
-    iconUrl: 'img/horodateur.png',
-    iconSize:     [20, 30],
-});
+let markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 })
 
 function addHorodateurToMap(data) {
     //Display a marker for each parking meter
@@ -32,7 +28,9 @@ function addHorodateurToMap(data) {
             "<b>Alimentation: " + pm.hor_alimentation + "</b></br>" +
             "<b>Zone: " + pm.hor_zone + "</b></br>";
 
-        L.marker([coordinates.latitude, coordinates.longitude], {icon: iconHorodateur}).addTo(layerGroupHorodateur).bindPopup(popup);
+        let marker = L.marker([coordinates.latitude, coordinates.longitude]).bindPopup(popup);
+        markers.addLayer(marker)
+        layerGroupHorodateur.addLayer(markers)
     });
 }
 
