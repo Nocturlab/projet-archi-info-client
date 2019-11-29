@@ -1,3 +1,6 @@
+const __REMOTE_URL = new URL('http://beta.easy-park.nocturlab.fr');
+const _http = new XMLHttpRequest();
+
 function lambert93toWGPS(lambertE, lambertN) {
 
     Math.tanh = Math.tanh || function(x) {

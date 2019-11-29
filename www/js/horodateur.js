@@ -1,6 +1,3 @@
-const __REMOTE_URL = new URL('http://beta.easy-park.nocturlab.fr');
-const _http = new XMLHttpRequest();
-
 //Display parkings meters
 //Retrieving data from server API
 _http.open("GET", __REMOTE_URL + '/horodateurs/findAll');
