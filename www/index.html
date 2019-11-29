@@ -132,26 +132,26 @@
             const mdcList = new mdc.list.MDCList(
                 document.querySelector('nav.mdc-list')
             );
+
+            // Each var under this is layer controller
+            const parkingSelector = document.querySelector("#mapid > div.leaflet-control-container > div.leaflet-top.leaflet-right > div > section > div.leaflet-control-layers-overlays > label:nth-child(1) > div > input");
+            const horodateurSelector = document.querySelector("#mapid > div.leaflet-control-container > div.leaflet-top.leaflet-right > div > section > div.leaflet-control-layers-overlays > label:nth-child(2) > div > input");
+            const pmrSelector = document.querySelector("#mapid > div.leaflet-control-container > div.leaflet-top.leaflet-right > div > section > div.leaflet-control-layers-overlays > label:nth-child(3) > div > input");
+
             mdcList.listen('click', ()=>{
+                // hide all layers of marker
+                parkingSelector.checked = false;
+                horodateurSelector.checked = false;
+                pmrSelector.checked = false;
                 switch (mdcList.selectedIndex) {
                     case 0: // Menu Places en temps réels
-                        console.log(mymap);
-                        map.removeLayer(layerGroupTempsReel);
-                        map.removeLayer(layerGroupHorodateur);
-                        map.removeLayer(layerGroupMobiliteReduite);
-                        map.addLayer(layerGroupTempsReel);
+                        parkingSelector.checked = true;
                         break;
                     case 1: // Horodateurs
-                        map.removeLayer(layerGroupTempsReel);
-                        map.removeLayer(layerGroupHorodateur);
-                        map.removeLayer(layerGroupMobiliteReduite);
-                        map.addLayer(layerGroupHorodateur);
+                        horodateurSelector.checked = true;
                         break;
                     case 2: // Places à mobilité réduites
-                        map.removeLayer(layerGroupTempsReel);
-                        map.removeLayer(layerGroupHorodateur);
-                        map.removeLayer(layerGroupMobiliteReduite);
-                        map.addLayer(layerGroupMobiliteReduite);
+                        pmrSelector.checked = true;
                         break;
                     case 3: // Quitter
                         if (navigator.app) {
@@ -163,9 +163,8 @@
                         }
                         break;
                 }
+                drawer.open = false;
             });
-            
-            
         });
     </script>
   </body>
