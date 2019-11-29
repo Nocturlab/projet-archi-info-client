@@ -1,18 +1,18 @@
 //Display disabled parking spaces
 //Retrieving data from server API
-_http.open("GET", __REMOTE_URL + '/PlaceMR/findAll');
-_http.send();
-_http.onreadystatechange = function () {
+let httpPMR = new XMLHttpRequest();
+httpPMR.open("GET", __REMOTE_URL + '/PlaceMR/findAll');
+httpPMR.send();
+httpPMR.onreadystatechange = function(){
     if (this.readyState === 4 && this.status === 200) {
         //Handle data
-        let data = JSON.parse(_http.responseText)
+        let data = JSON.parse(httpPMR.responseText)
         addPMRToMap(data);
     } else {
         //Handle error
         console.log(this.readyState);
     }
 };
-
 
 function addPMRToMap(data) {
     //Display a marker for each disabled parking space
