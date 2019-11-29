@@ -1,5 +1,6 @@
 //Display parkings meters
 //Retrieving data from server API
+
 let httpHorodateur = new XMLHttpRequest();
 httpHorodateur.open("GET", __REMOTE_URL + '/horodateurs/findAll');
 httpHorodateur.send();
@@ -26,6 +27,7 @@ function addHorodateurToMap(data) {
             "<b>Type: " + pm.hor_type + "</b></br>" +
             "<b>Alimentation: " + pm.hor_alimentation + "</b></br>" +
             "<b>Zone: " + pm.hor_zone + "</b></br>";
+
         let marker = L.marker([coordinates.latitude, coordinates.longitude]).bindPopup(popup);
         markers.addLayer(marker)
         layerGroupHorodateur.addLayer(markers)
