@@ -1,11 +1,13 @@
 let layerGroupHorodateur = L.layerGroup();
 let layerGroupTempsReel = L.layerGroup();
 let layerGroupMobiliteReduite = L.layerGroup();
+let layerGroupParking = L.layerGroup();
 
 let overlayMaps = {
     "Places en temps réel": layerGroupTempsReel,
     "Horodateur": layerGroupHorodateur,
-    "Places à mobilité réduite": layerGroupMobiliteReduite
+    "Places à mobilité réduite": layerGroupMobiliteReduite,
+    "Parking": layerGroupParking
 };
 
 L.control.layers(null, overlayMaps).addTo(mymap);
