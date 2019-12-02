@@ -140,18 +140,21 @@
 
             mdcList.listen('click', ()=>{
                 // hide all layers of marker
-                parkingSelector.checked = false;
-                horodateurSelector.checked = false;
-                pmrSelector.checked = false;
+                if(parkingSelector.checked)
+                    parkingSelector.click();
+                if(horodateurSelector.checked)
+                    horodateurSelector.click();
+                if(pmrSelector.checked)
+                    pmrSelector.click();
                 switch (mdcList.selectedIndex) {
                     case 0: // Menu Places en temps réels
-                        parkingSelector.checked = true;
+                        pmrSelector.click();
                         break;
                     case 1: // Horodateurs
-                        horodateurSelector.checked = true;
+                        horodateurSelector.click();
                         break;
                     case 2: // Places à mobilité réduites
-                        pmrSelector.checked = true;
+                        pmrSelector.click();
                         break;
                     case 3: // Quitter
                         if (navigator.app) {
