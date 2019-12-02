@@ -2,29 +2,45 @@ name: Build Unix
 on: [push]
 jobs:
   build:
-    name: Build ${{ matrix.os }} NodeJS ${{ matrix.node-version }}
+    name: Build ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        node-version: [8.x, 10.x, 12.x]
     steps:
     - name: Checkout code from Git repository
       uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+    - name: Building project
+      run: |
+        ./docker build -t nocturlab:easy-park-lr .
+        ./docker run -it --rm --name build-apk -v $PWD/platforms/android/app/build/outputs/apk:/home/node/platforms/android/app/build/outputs/apk nocturlab:easy-park-lr build android
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: release-${{ matrix.os }}
-        path: ./
-    - name: Build
-      run: |
-        npm install
-        npm run build --if-present
+        path: ./platforms/android/app/build/outputs/apk
+    - name: Publish to Docker
+      if:  matrix.os == 'ubuntu-latest'
+      uses: elgohr/Publish-Docker-Github-Action@1.12
+      with:
+        name: nocturlab/easy-park-lr
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: false
+        cache: true
+    - name: Publish on Beta server
+      if:  matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/beta'
+      uses: appleboy/ssh-action@v0.0.2
       env:
-        CI: true
-#     - name: Tests
-#       run: npm test
+        HOST: ${{ secrets.SSH_HOST }}
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.BETA_STACK_DIR }} beta-archi-data-client'"
+    - name: Publish on production server
+      if:  matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/master'
+      uses: appleboy/ssh-action@v0.0.2
+      env:
+        HOST: ${{ secrets.SSH_HOST }}
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.STACK_DIR }} archi-data-client'"
