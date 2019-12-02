@@ -19,14 +19,6 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         snapshot: false
         cache: true
-    - name: Building project
-      run: |
-        docker run -it --rm --name build-apk -v $PWD/platforms/android/app/build/outputs/apk:/home/node/platforms/android/app/build/outputs/apk nocturlab:easy-park-lr build android
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: release-${{ matrix.os }}
-        path: ./platforms/android/app/build/outputs/apk
     - name: Publish on Beta server
       if:  matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/beta'
       uses: appleboy/ssh-action@v0.0.2
