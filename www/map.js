@@ -86,7 +86,7 @@ function onLocationFound(e) {
     
     let coordinates = coordinatesConverter(jsonData);
     //change distance 20000
-    fetch("http://beta.easy-park.nocturlab.fr/parkings/findNearestParking?lat="+coordinates[0][0]+"&lng="+coordinates[0][1]+"&dist=2000000").then(function(result) {
+    fetch("http://api.beta.easy-park.nocturlab.fr/parkings/findNearestParking?lat="+coordinates[0][0]+"&lng="+coordinates[0][1]+"&dist=2000000").then(function(result) {
         return result.json();
     }).then(function(result) {
         displayParkings(result);

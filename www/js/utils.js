@@ -1,4 +1,4 @@
-const __REMOTE_URL = new URL('http://beta.easy-park.nocturlab.fr');
+const __REMOTE_URL = new URL('http://api.beta.easy-park.nocturlab.fr');
 
 function lambert93toWGPS(lambertE, lambertN) {
 
