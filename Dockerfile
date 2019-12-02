@@ -20,10 +20,10 @@ ENV PATH ${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${ANDROID_HOME}/tools:$ANDROID_HOME
 RUN apk update && \
   apk add curl openjdk8-jre openjdk8
 
-# INSTALL IONIC AND CORDOVA
-RUN npm install -g cordova ionic
+# INSTALL Phonegap AND CORDOVA
+RUN npm install -g cordova phonegap
 
-#INSTALL Graddle
+#INSTALL Gradle
 RUN mkdir -p ${GRADLE_HOME} && \
   curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip > /tmp/gradle.zip && \
   unzip /tmp/gradle.zip -d ${GRADLE_HOME} && \
@@ -36,7 +36,7 @@ RUN mkdir -p ${ANDROID_HOME} && \
   unzip /tmp/tools.zip -d ${ANDROID_HOME}
 
 # INSTALL GLIBC
-RUN curl -L https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub > /etc/apk/keys/sgerrand.rsa.pub && \
+RUN curl -L https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub > /etc/apk/keys/sgerrand.rsa.pub && \
   curl -L ${GLIB_PACKAGE_BASE_URL}/${GLIB_VERSION}/glibc-${GLIB_VERSION}.apk > /tmp/glibc.apk && \
   curl -L ${GLIB_PACKAGE_BASE_URL}/${GLIB_VERSION}/glibc-bin-${GLIB_VERSION}.apk > /tmp/glibc-bin.apk && \
   apk add /tmp/glibc-bin.apk /tmp/glibc.apk
