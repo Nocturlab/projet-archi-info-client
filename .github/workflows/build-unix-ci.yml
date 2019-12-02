@@ -1,0 +1,37 @@
+name: Build Unix
+on: [push]
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+    - name: Checkout code from Git repository
+      uses: actions/checkout@v1
+    - name: Publish to Docker
+      if:  matrix.os == 'ubuntu-latest'
+      uses: elgohr/Publish-Docker-Github-Action@1.12
+      with:
+        name: nocturlab/easy-park-lr
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: false
+        cache: true
+    - name: Publish on Beta server
+      if:  matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/beta'
+      uses: appleboy/ssh-action@v0.0.2
+      env:
+        HOST: ${{ secrets.SSH_HOST }}
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.BETA_STACK_DIR }} beta-archi-data-client'"
+    - name: Publish on production server
+      if:  matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/master'
+      uses: appleboy/ssh-action@v0.0.2
+      env:
+        HOST: ${{ secrets.SSH_HOST }}
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.STACK_DIR }} archi-data-client'"

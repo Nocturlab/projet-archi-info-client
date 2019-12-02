@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <title>TP Projet Data</title>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <link
+          rel="stylesheet"
+          type="text/css"
+          href="css/material-components.min.css"
+      />
+      <link href="css/material-icons/font.css" rel="stylesheet">
+      <script type="text/javascript" src="js/material-components.min.js"></script>
+            
+      <link rel="stylesheet" type="text/css" href="css/index.css" />
+      <link rel="stylesheet" type="text/css" href="css/horodateur.css" />
+      <link rel="stylesheet" type="text/css" href="css/buttons.css" />
+
+      <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+      <!--LeafLet requierement-->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+      <!--Plugin leaflet cluster-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster-src.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster-src.js.map"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js.map"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"/>
+  </head>
+
+  <body>
+    <header class="mdc-top-app-bar mdc-top-app-bar--short mdc-top-app-bar--short-has-action-item mdc-top-app-bar--short-collapsed" data-mdc-auto-init="MDCTopAppBar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.71429; --mdc-ripple-left:10px; --mdc-ripple-top:10px;" data-mdc-auto-init="MDCRipple">menu</button>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end clock">
+                00:00
+            </section>
+        </div>
+    </header>
+    <aside class="mdc-drawer mdc-drawer--modal" style="border-radius: 0px 24px 24px 0px;" data-mdc-auto-init="MDCDrawer">
+        <div class="mdc-drawer__header">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23E7E7E7%22%20d%3D%22M0%200h120v120H0z%22%2F%3E%3Cpath%20fill%3D%22%23B9B9B9%22%20d%3D%22M71.995%2067c.003.166.005.333.005.5C72%2079.926%2061.926%2090%2049.5%2090S27%2079.926%2027%2067.5%2037.074%2045%2049.5%2045c4.34%200%208.395%201.23%2011.832%203.359L72%2030l21.5%2037H71.995zm0%200c-.172-7.877-4.392-14.757-10.663-18.641L50.5%2067h21.495z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A"/>
+            <h3 class="mdc-drawer__title">Easy-Park LR</h3>
+            <h6 class="mdc-drawer__subtitle">
+                Université de la Rochelle
+            </h6>
+        </div>
+        <div class="mdc-drawer__content">
+            <nav class="mdc-list">
+                <hr class="mdc-list-divider">
+                <h6 class="mdc-list-group__subheader">Navigation</h6>
+                <a class="mdc-list-item mdc-list-item--activated start-game-button" tabindex="-1">
+                    <span class="mdc-list-item__graphic material-icons">
+                        send
+                    </span>
+                    <span class="mdc-list-item__text">
+                        Places en temps réel
+                    </span>
+                </a>
+                <a class="mdc-list-item" tabindex="-1">
+                    <span class="mdc-list-item__graphic material-icons">
+                        send
+                    </span>
+                    <span class="mdc-list-item__text">
+                        Horodateurs
+                    </span>
+                </a>
+                <a class="mdc-list-item" tabindex="-1">
+                    <span class="mdc-list-item__graphic material-icons">
+                        send
+                    </span>
+                    <span class="mdc-list-item__text">
+                        Places à mobilité réduites
+                    </span>
+                </a>
+                <hr class="mdc-list-divider">
+                <h6 class="mdc-list-group__subheader">Paramètres</h6>
+                <a class="mdc-list-item logout" tabindex="-1">
+                    <span class="mdc-list-item__graphic material-icons">
+                        lock
+                    </span>
+                    <span class="mdc-list-item__text">
+                        Quitter
+                    </span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+    <div class="mdc-drawer-scrim"></div>
+
+    <div class="mdc-drawer-app-content">
+        <div id="mapid"></div>
+    </div>
+
+    <!--Map container-->
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/layers.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/parking.js"></script>
+    <script type="text/javascript" src="js/horodateur.js"></script>
+    <script type="text/javascript" src="js/pmr.js"></script>
+
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.mdc.autoInit();
+            const timer = document.querySelector('header.mdc-top-app-bar .mdc-top-app-bar__section--align-end');
+            // This event is triggered every seconds.
+            let updateTimer = function() {
+                const date = new Date();
+                const time = date.toLocaleTimeString('fr-FR', {
+                    timeStyle: 'medium'
+                });
+                timer.innerHTML = "<p>"+time+"</p>"
+            }
+            setInterval(updateTimer, 1000);
+            updateTimer();
+
+            const drawer = new mdc.drawer.MDCDrawer(
+                document.querySelector("aside.mdc-drawer")
+            );
+            const topAppBar = new mdc.topAppBar.MDCTopAppBar(
+                document.querySelector("header.mdc-top-app-bar")
+            );
+            topAppBar.listen("MDCTopAppBar:nav", () => {
+                drawer.open = !drawer.open;
+            });
+
+            const mdcList = new mdc.list.MDCList(
+                document.querySelector('nav.mdc-list')
+            );
+
+            // Each var under this is layer controller
+            const parkingSelector = document.querySelector("#mapid > div.leaflet-control-container > div.leaflet-top.leaflet-right > div > section > div.leaflet-control-layers-overlays > label:nth-child(1) > div > input");
+            const horodateurSelector = document.querySelector("#mapid > div.leaflet-control-container > div.leaflet-top.leaflet-right > div > section > div.leaflet-control-layers-overlays > label:nth-child(2) > div > input");
+            const pmrSelector = document.querySelector("#mapid > div.leaflet-control-container > div.leaflet-top.leaflet-right > div > section > div.leaflet-control-layers-overlays > label:nth-child(3) > div > input");
+
+            mdcList.listen('click', ()=>{
+                // hide all layers of marker
+                if(parkingSelector.checked)
+                    parkingSelector.click();
+                if(horodateurSelector.checked)
+                    horodateurSelector.click();
+                if(pmrSelector.checked)
+                    pmrSelector.click();
+                switch (mdcList.selectedIndex) {
+                    case 0: // Menu Places en temps réels
+                        parkingSelector.click();
+                        break;
+                    case 1: // Horodateurs
+                        horodateurSelector.click();
+                        break;
+                    case 2: // Places à mobilité réduites
+                        pmrSelector.click();
+                        break;
+                    case 3: // Quitter
+                        if (navigator.app) {
+                            navigator.app.exitApp();
+                        } else if (navigator.device) {
+                            navigator.device.exitApp();
+                        } else {
+                            window.close();
+                        }
+                        break;
+                }
+                drawer.open = false;
+            });
+            parkingSelector.click();
+        });
+    </script>
+  </body>
+</html>
