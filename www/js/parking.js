@@ -59,11 +59,17 @@ mymap.on('locationfound', function(event) {
     console.log(event);
     
     var radius = event.accuracy / 2;
-    if(currentPosMarker)
-        mymap.removeLayer(currentPosMarker);
     
-    currentPosMarker = L.marker(event.latlng, {icon: posIcon});
-    currentPosMarker.addTo(mymap);
+    if(currentPosMarker){
+        mymap.removeLayer(currentPosMarker[0]);
+        mymap.removeLayer(currentPosMarker[1]);
+    }
     
-    L.circle(event.latlng, radius).addTo(mymap);
+    currentPosMarker = [];
+    
+    currentPosMarker[0] = L.marker(event.latlng, {icon: posIcon});
+    currentPosMarker[0].addTo(mymap);
+    
+    currentPosMarker[1] = L.circle(event.latlng, radius);
+    currentPosMarker[1].addTo(mymap);
 });
