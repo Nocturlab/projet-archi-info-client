@@ -61,6 +61,8 @@ mymap.on('locationfound', function(event) {
     
     if(currentPosMarker)
         currentPosMarker.forEach(layer=>mymap.removeLayer(layer));
+    else
+        mymap.setView(event.latlng);
     
     currentPosMarker = [];
     
