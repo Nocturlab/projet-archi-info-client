@@ -5,7 +5,11 @@
 //Retrieving data from server API
 
 mymap.on('locationfound', function(event) {
-    console.log(event.latlng);
+    var radius = event.accuracy / 2;
+    L.marker(event.latlng).addTo(map)
+     .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    L.circle(event.latlng, radius).addTo(map);
+    
     const coordinates = coordinatesConverter({
         "data": [{
                 "dp_y": event.latlng.lat,
