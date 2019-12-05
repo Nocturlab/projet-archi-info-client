@@ -15,17 +15,18 @@ fetch(`${__REMOTE_URL}/parkings/findAll`, {
 });
 
 function addParkingToMap(data) {
+    console.log(data);
     data.forEach(pm => {
         //Convert lambert 93 to real coordinate system
-        let coordinates = lambert93toWGPS(pm.parking_x, pm.parking_y)
-        let popup = "<b>Numéro de parking: " + pm.parking_libelle + "</b></br>" +
-            "<b>Voie: " + pm.parking_libelle + "</b></br>" +
-            "<b>Type: " + pm.parking_type + "</b></br>" +
-            "<b>Nombre de places: " + pm.parking_nb_places + "</b></br>";
+        let coordinates = lambert93toWGPS(pm.dp_x, pm.dp_y);
+        let popup = "<b>Numéro de parking: " + pm.dp_parc_id + "</b></br>" +
+            "<b>Voie: " + pm.dp_libelle + "</b></br>" +
+            "<b>Type: " + pm.type + "</b></br>" +
+            "<b>Nombre de places: " + pm.dp_nb_places + "</b></br>";
 
-        if (pm.parking_nb_place_reel !== "NULL") {
-            popup += "<b>Nombre de places libres: " + pm.parking_nb_place_reel + "</b></br>";
-        }
+        if (pm.dp_place_disponible !== "NULL")
+            popup += "<b>Nombre de places libres: " + pm.dp_place_disponible + "</b></br>";
+            
         L.marker([coordinates.latitude, coordinates.longitude]).addTo(layerGroupParkings).bindPopup(popup);
     });
 }
@@ -56,14 +57,10 @@ let currentPosMarker = null;
 mymap.locate({setView: false, watch: true, maxZoom: 16});
 
 mymap.on('locationfound', function(event) {
-    console.log(event);
-    
     var radius = event.accuracy / 2;
     
-    if(currentPosMarker){
-        mymap.removeLayer(currentPosMarker[0]);
-        mymap.removeLayer(currentPosMarker[1]);
-    }
+    if(currentPosMarker)
+        currentPosMarker.forEach(layer=>mymap.removeLayer(layer));
     
     currentPosMarker = [];
     
