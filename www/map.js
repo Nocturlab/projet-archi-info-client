@@ -86,7 +86,7 @@ function onLocationFound(e) {
     
     let coordinates = coordinatesConverter(jsonData);
     //change distance 20000
-    fetch("http://api.beta.easy-park.nocturlab.fr/parkings/findNearestParking?lat="+coordinates[0][0]+"&lng="+coordinates[0][1]+"&dist=2000000").then(function(result) {
+    fetch(__REMOTE_URL+"/parkings/findNearestParking?lat="+coordinates[0][0]+"&lng="+coordinates[0][1]+"&dist=2000000").then(function(result) {
         return result.json();
     }).then(function(result) {
         displayParkings(result);
@@ -131,13 +131,11 @@ for (let j = 0; j < wgs84Coordinate.length; j++) {
 }
 
 function onClick(e) {
-    console.log(currentPosition);
     window.addEventListener('ready', function () {
         launchnavigator.navigate([e.latlng.lat, e.latlng.lng], {
             start: currentPosition
         });
-        
-        })
+    });
         
     alert(e.latlng);
 

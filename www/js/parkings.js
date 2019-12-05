@@ -1,11 +1,18 @@
 (function(){
-    const __REMOTE_URL = new URL('http://api.beta.easy-park.nocturlab.fr');
+
+    
 
 //Display parkings meters
 //Retrieving data from server API
-
+map.on('locationerror', function(err) {
+    console.error(err);
+});
 mymap.on('locationfound', function(event) {
-    console.log(event.latlng);
+    console.log(event);
+    var radius = event.accuracy / 2;
+    L.marker(event.latlng, {icon: posIcon}).addTo(mymap);
+    L.circle(event.latlng, radius).addTo(mymap);
+    
     const coordinates = coordinatesConverter({
         "data": [{
                 "dp_y": event.latlng.lat,
@@ -28,7 +35,7 @@ mymap.on('locationfound', function(event) {
     });
 });
 
-let lc = L.control.locate().addTo(mymap);
+let lc = L.control.locate({setView: true, watch: true, maxZoom: 8}).addTo(mymap);
 
 // mymap.fire('locationfound', { latlng: {
 //     lat: 46.1476498,
@@ -39,7 +46,6 @@ function addParkingsToMap(data) {
     //Display a marker for each parking
     data.forEach(pm => {
         //Convert lambert 93 to real coordinate system
-        console.log(pm);
         var coordinates = coordinatesConverter({
             "data": [{
                 "dp_y": pm.parking_x,
