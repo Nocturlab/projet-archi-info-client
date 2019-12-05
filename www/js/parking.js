@@ -52,10 +52,18 @@ const posIcon = L.divIcon({
     html: `<span style="${markerHtmlStyles}" />`
 });
 
-let lc = mymap.locate({setView: true, watch: true, maxZoom: 16});
+let currentPosMarker = null;
+mymap.locate({setView: false, watch: true, maxZoom: 16});
+
 mymap.on('locationfound', function(event) {
     console.log(event);
+    
     var radius = event.accuracy / 2;
-    L.marker(event.latlng, {icon: posIcon}).addTo(mymap);
+    if(currentPosMarker)
+        mymap.removeLayer(currentPosMarker);
+    
+    currentPosMarker = L.marker(event.latlng, {icon: posIcon});
+    currentPosMarker.addTo(mymap);
+    
     L.circle(event.latlng, radius).addTo(mymap);
 });
