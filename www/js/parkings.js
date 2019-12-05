@@ -1,13 +1,35 @@
 (function(){
 
+    const myCustomColour = '#6200ee';
+
+    const markerHtmlStyles = `
+        background-color: ${myCustomColour};
+        width: 3rem;
+        height: 3rem;
+        display: block;
+        left: -1.5rem;
+        top: -1.5rem;
+        position: relative;
+        border-radius: 3rem 3rem 0;
+        transform: rotate(45deg);
+        border: 1px solid #FFFFFF`;
+
+    const posIcon = Leaflet.divIcon({
+        className: "my-custom-pin",
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
+        html: `<span style="${markerHtmlStyles}" />`
+    });
+
 //Display parkings meters
 //Retrieving data from server API
 
 mymap.on('locationfound', function(event) {
+    console.log(event);
     var radius = event.accuracy / 2;
-    L.marker(event.latlng).addTo(map)
-     .bindPopup("You are within " + radius + " meters from this point").openPopup();
-    L.circle(event.latlng, radius).addTo(map);
+    L.marker(event.latlng, {icon: posIcon}).addTo(mymap);
+    L.circle(event.latlng, radius).addTo(mymap);
     
     const coordinates = coordinatesConverter({
         "data": [{
@@ -42,7 +64,6 @@ function addParkingsToMap(data) {
     //Display a marker for each parking
     data.forEach(pm => {
         //Convert lambert 93 to real coordinate system
-        console.log(pm);
         var coordinates = coordinatesConverter({
             "data": [{
                 "dp_y": pm.parking_x,
