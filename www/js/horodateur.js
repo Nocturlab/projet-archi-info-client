@@ -1,19 +1,19 @@
 //Display parkings meters
 //Retrieving data from server API
 
-let httpHorodateur = new XMLHttpRequest();
-httpHorodateur.open("GET", __REMOTE_URL + '/horodateurs/findAll');
-httpHorodateur.send();
-httpHorodateur.onreadystatechange = function(){
-    if (this.readyState === 4 && this.status === 200) {
-        //Handle data
-        let data = JSON.parse(httpHorodateur.responseText)
-        addHorodateurToMap(data);
-    } else {
-        //Handle error
-        console.error(this.readyState);
+fetch(`${__REMOTE_URL}/horodateurs/findAll`, {
+    method: 'GET',
+    headers: {
+        'Content-type': 'application/json',
+        'Access-Control-Allow-Origin':'*'
     }
-};
+}).then(function(result) {
+    return result.json();
+}).then(function(result) {
+    addHorodateurToMap(result);
+}).catch(function(err) {
+    console.error(err.message);
+});
 
 let markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 })
 
