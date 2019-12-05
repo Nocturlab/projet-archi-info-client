@@ -32,7 +32,7 @@ mymap.on('locationfound', function(event) {
     });
 });
 
-let lc = L.control.locate().addTo(mymap);
+let lc = L.control.locate({setView: true, watch: true, maxZoom: 8}).addTo(mymap);
 
 // mymap.fire('locationfound', { latlng: {
 //     lat: 46.1476498,
