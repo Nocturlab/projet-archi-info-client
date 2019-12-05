@@ -11,7 +11,7 @@ httpHorodateur.onreadystatechange = function(){
         addHorodateurToMap(data);
     } else {
         //Handle error
-        console.log(this.readyState);
+        console.error(this.readyState);
     }
 };
 

@@ -3,7 +3,7 @@ const __LATT_LR = -1.1520434;
 const __ZOOM_INIT = 13;
 
 //Create the map
-let mymap = L.map('mapid').setView([__LONG_LR, __LATT_LR], __ZOOM_INIT);
+let mymap = L.map('mapid', {center: [__LONG_LR, __LATT_LR], zoom: __ZOOM_INIT});
 
 //add a tile layer
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {

@@ -10,7 +10,7 @@ httpParking.onreadystatechange = function () {
         addParkingToMap(data);
     } else {
         //Handle error
-        console.log(this.readyState);
+        console.error(this.readyState);
     }
 };
 

@@ -131,13 +131,11 @@ for (let j = 0; j < wgs84Coordinate.length; j++) {
 }
 
 function onClick(e) {
-    console.log(currentPosition);
     window.addEventListener('ready', function () {
         launchnavigator.navigate([e.latlng.lat, e.latlng.lng], {
             start: currentPosition
         });
-        
-        })
+    });
         
     alert(e.latlng);
 
