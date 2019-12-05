@@ -1,5 +1,4 @@
 (function(){
-    const __REMOTE_URL = new URL('http://api.beta.easy-park.nocturlab.fr');
 
 //Display parkings meters
 //Retrieving data from server API
