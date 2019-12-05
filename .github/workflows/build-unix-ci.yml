@@ -26,7 +26,7 @@ jobs:
         HOST: ${{ secrets.SSH_HOST }}
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.BETA_STACK_DIR }} beta-archi-data-client'"
+        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.BETA_STACK_DIR }} beta-archi-data'"
     - name: Publish on production server
       if:  matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/master'
       uses: appleboy/ssh-action@v0.0.2
@@ -34,4 +34,4 @@ jobs:
         HOST: ${{ secrets.SSH_HOST }}
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.STACK_DIR }} archi-data-client'"
+        args: --user ${{ secrets.SSH_USER }} --script "'docker stack deploy -c ${{ secrets.STACK_DIR }} archi-data'"
